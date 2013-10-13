@@ -1,0 +1,35 @@
+<project name="H2O-5.0-Builder" basedir="." default="all">
+  <property name="src.dir" location="." />
+  <property name="lib.dir" location="../lib" />
+  <property name="build.dir" location="../build" />
+  <property name="class.dir" location="${build.dir}/class" />
+
+  <path id="classpath">
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${build.dir}" includes="**/*.jar" />
+  </path>
+
+  <target name="all" depends="build,jar,run" />
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+
+  <target name="build">
+    <mkdir dir="${class.dir}" />
+    <javac srcdir="${src.dir}" destdir="${class.dir}" classpathref="classpath" includeantruntime="false" />
+  </target>
+
+  <target name="jar">
+    <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${class.dir}">
+      <!--<zipfileset includes="**/*.class" src="${lib.dir}/abc.jar" />-->
+      <manifest>
+        <attribute name="Main-Class" value="Main" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run">
+    <java jar="${build.dir}/${ant.project.name}.jar" fork="true" />
+  </target>
+</project>

@@ -1,0 +1,16 @@
+package mvc;
+
+public enum SimpleAction
+{
+  SHOW_PROJECT_NAME_DIALOG,
+  
+  ADD_PROJECT,
+  REMOVE_PROJECT,
+  DUPLICATE_PROJECT,
+  EDIT_PROJECT,
+  
+  MOVE_COMMAND_FORWARD,
+  MOVE_COMMAND_BACKWARD,
+  
+  EXIT_0
+}
